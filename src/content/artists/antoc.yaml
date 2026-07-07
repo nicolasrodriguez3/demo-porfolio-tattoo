@@ -1,0 +1,11 @@
+name: Antoc
+slug: antoc
+photo: /images/artists/antoc.jpg
+bio: "Tradicional y letras son su especialidad. Antoc domina el arte del lettering y los diseños tradicionales con un enfoque moderno. Sus líneas sólidas y su manejo del sombreado lo convierten en el referente del estilo tradicional en el estudio."
+styles:
+  - tradicional
+  - letras
+  - old school
+social:
+  instagram: "@antoc.tattoo"
+published: true

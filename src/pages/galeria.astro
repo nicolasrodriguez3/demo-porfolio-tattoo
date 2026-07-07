@@ -2,48 +2,72 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import GalleryGrid from '../components/GalleryGrid.astro';
+import GalleryFilters from '../components/GalleryFilters';
+import Lightbox from '../components/Lightbox';
 import { getCollection } from 'astro:content';
 
 const galleryItems = await getCollection('gallery');
+const artists = await getCollection('artists');
+
+// Solo items publicados
+const publishedItems = galleryItems.filter((g) => g.data.published !== false);
+
+// Extraer estilos únicos de todos los items para pasarlos a los filtros
+const allStyles = [...new Set(publishedItems.flatMap((g) => g.data.styles))];
+
+// Datos serializables para las islas React
+const imagesForJS = publishedItems.map((item) => ({
+  src: item.data.image,
+  title: item.data.title,
+  slug: item.data.slug,
+  description: item.data.description ?? '',
+  styles: item.data.styles,
+  artist: artists.find((a) => a.id === item.data.artist)?.data.name ?? item.data.artist,
+}));
 ---
 
 <BaseLayout
   title="Galería — Carmin Tattoo Studio"
-  description="Galería de tatuajes del estudio Carmin Tattoo en Paraná"
+  description="Galería de tatuajes del estudio Carmin Tattoo en Paraná, Argentina. Explorá nuestros trabajos por estilo."
 >
   <Fragment slot="header">
     <Header />
   </Fragment>
 
-  <section class="bg-ink-black px-4 pb-24 pt-8">
-    <div class="mx-auto max-w-6xl">
-      <h1 class="font-display text-4xl font-bold italic text-paper">Galería</h1>
-      <p class="mt-2 font-body text-sm font-light text-paper/40">
-        Explorá nuestros trabajos por estilo
-      </p>
+  <section class="bg-ink-black px-4 pb-32 pt-8">
+    <div class="mx-auto max-w-7xl">
+      <!-- Page header -->
+      <div class="mb-2">
+        <h1 class="font-display text-4xl font-bold italic text-paper sm:text-5xl">
+          Galería
+        </h1>
+        <p class="mt-2 font-body text-sm font-light text-paper/40">
+          Explorá nuestros trabajos por estilo
+        </p>
+      </div>
 
-      {galleryItems.length === 0 ? (
+      <!-- Filters (React island) -->
+      <GalleryFilters client:load availableStyles={allStyles} />
+
+      <!-- Grid + Lightbox -->
+      {publishedItems.length === 0 ? (
         <div class="mt-16 text-center">
-          <p class="font-body text-base text-paper/40">Próximamente — galería en construcción</p>
+          <p class="font-body text-base text-paper/40">
+            Galería vacía — volvé pronto para ver nuevos trabajos.
+          </p>
+          <a
+            href="/contacto"
+            class="mt-4 inline-block font-body text-sm font-semibold uppercase tracking-widest text-copper no-underline transition-colors hover:text-copper-light"
+          >
+            Contactanos
+          </a>
         </div>
       ) : (
-        <div class="mt-10 columns-1 gap-4 sm:columns-2 lg:columns-3 xl:columns-4">
-          {galleryItems.map((item) => (
-            <div class="mb-4 break-inside-avoid">
-              <img
-                src={item.data.image}
-                alt={item.data.title}
-                class="w-full rounded-sm"
-                loading="lazy"
-                decoding="async"
-              />
-              <div class="mt-2">
-                <h3 class="font-body text-sm font-semibold text-paper">{item.data.title}</h3>
-                <p class="font-body text-xs text-paper/40">{item.data.artist}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+        <>
+          <GalleryGrid items={publishedItems} artists={artists} />
+          <Lightbox client:load items={imagesForJS} />
+        </>
       )}
     </div>
   </section>

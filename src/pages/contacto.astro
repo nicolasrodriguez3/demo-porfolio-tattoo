@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const settings = await getCollection('siteSettings');
+const site = settings[0]?.data;
+---
+
+<BaseLayout
+  title="Contacto — Carmin Tattoo Studio"
+  description="Contactanos para agendar tu turno en Carmin Tattoo Studio, Paraná"
+>
+  <Fragment slot="header">
+    <Header />
+  </Fragment>
+
+  <section class="bg-ink-black px-4 pb-24 pt-8">
+    <div class="mx-auto max-w-6xl">
+      <h1 class="font-display text-4xl font-bold italic text-paper">Contacto</h1>
+      <p class="mt-2 font-body text-sm font-light text-paper/40">
+        Escribinos o visitanos en el estudio
+      </p>
+
+      <div class="mt-10 grid gap-10 lg:grid-cols-2">
+        <!-- Contact info -->
+        <div>
+          {site && (
+            <div class="space-y-6">
+              <div>
+                <h3 class="font-body text-xs font-semibold uppercase tracking-widest text-paper/40">Dirección</h3>
+                <p class="mt-1 font-body text-base text-paper">{site.address}</p>
+              </div>
+              <div>
+                <h3 class="font-body text-xs font-semibold uppercase tracking-widest text-paper/40">Email</h3>
+                <p class="mt-1 font-body text-base text-paper">
+                  <a href={`mailto:${site.email}`} class="transition-colors hover:text-copper">{site.email}</a>
+                </p>
+              </div>
+              {site.phone && (
+                <div>
+                  <h3 class="font-body text-xs font-semibold uppercase tracking-widest text-paper/40">Teléfono</h3>
+                  <p class="mt-1 font-body text-base text-paper">{site.phone}</p>
+                </div>
+              )}
+              {site.schedule && (
+                <div>
+                  <h3 class="font-body text-xs font-semibold uppercase tracking-widest text-paper/40">Horarios</h3>
+                  <p class="mt-1 font-body text-base text-paper whitespace-pre-line">{site.schedule}</p>
+                </div>
+              )}
+            </div>
+          )}
+
+          <div class="mt-8">
+            <p class="font-body text-sm font-light text-paper/40">
+              Formulario de contacto y mapa próximamente.
+            </p>
+          </div>
+        </div>
+
+        <!-- Map placeholder -->
+        <div class="flex min-h-[300px] items-center justify-center rounded-sm bg-charcoal">
+          <p class="font-body text-sm text-paper/40">Mapa interactivo próximamente</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="footer">
+    <Footer />
+  </Fragment>
+</BaseLayout>

@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const galleryItems = await getCollection('gallery');
+---
+
+<BaseLayout
+  title="Galería — Carmin Tattoo Studio"
+  description="Galería de tatuajes del estudio Carmin Tattoo en Paraná"
+>
+  <Fragment slot="header">
+    <Header />
+  </Fragment>
+
+  <section class="bg-ink-black px-4 pb-24 pt-8">
+    <div class="mx-auto max-w-6xl">
+      <h1 class="font-display text-4xl font-bold italic text-paper">Galería</h1>
+      <p class="mt-2 font-body text-sm font-light text-paper/40">
+        Explorá nuestros trabajos por estilo
+      </p>
+
+      {galleryItems.length === 0 ? (
+        <div class="mt-16 text-center">
+          <p class="font-body text-base text-paper/40">Próximamente — galería en construcción</p>
+        </div>
+      ) : (
+        <div class="mt-10 columns-1 gap-4 sm:columns-2 lg:columns-3 xl:columns-4">
+          {galleryItems.map((item) => (
+            <div class="mb-4 break-inside-avoid">
+              <img
+                src={item.data.image}
+                alt={item.data.title}
+                class="w-full rounded-sm"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="mt-2">
+                <h3 class="font-body text-sm font-semibold text-paper">{item.data.title}</h3>
+                <p class="font-body text-xs text-paper/40">{item.data.artist}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <Fragment slot="footer">
+    <Footer />
+  </Fragment>
+</BaseLayout>

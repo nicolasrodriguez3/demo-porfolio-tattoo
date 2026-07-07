@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink-black: #0A0A0A;
+  --color-charcoal: #1A1A1A;
+  --color-warm-gray: #2A2A2A;
+  --color-copper: #B87333;
+  --color-copper-light: #D4956A;
+  --color-paper: #F5F0EB;
+  --color-ink: #1A1A1A;
+
+  --font-display: "Cormorant Garamond", serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+/*
+  Dark mode base styles.
+  The `.dark` class is applied to `<html>` via inline blocking script in BaseLayout.
+  The site defaults to dark theme; light mode removes the `.dark` class.
+*/
+
+:root {
+  color-scheme: dark;
+}
+
+:root:not(.dark) {
+  color-scheme: light;
+}
+
+/* Base body styles */
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-ink-black);
+  color: var(--color-paper);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+:root:not(.dark) body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+}
+
+/* Skip-to-content link */
+.skip-to-content {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  background-color: var(--color-copper);
+  color: var(--color-paper);
+  font-weight: 600;
+  transition: top 0.2s;
+}
+
+.skip-to-content:focus {
+  top: 0;
+}
+
+/* Selection styling */
+::selection {
+  background-color: var(--color-copper);
+  color: var(--color-paper);
+}

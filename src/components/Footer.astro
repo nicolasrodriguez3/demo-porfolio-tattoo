@@ -1,0 +1,52 @@
+---
+import SocialLinks from './SocialLinks.astro';
+---
+
+<footer class="border-t border-warm-gray bg-ink-black transition-colors">
+  <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+    <div class="grid gap-8 md:grid-cols-3">
+      <!-- Brand -->
+      <div>
+        <h3 class="font-display text-xl font-bold italic text-copper">
+          CARMIN TATTOO
+        </h3>
+        <p class="mt-2 font-body text-sm font-light text-paper/60">
+          Estudio de tatuaje profesional en Paraná, Entre Ríos.
+        </p>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h4 class="mb-3 font-body text-xs font-semibold uppercase tracking-widest text-paper/40">
+          Contacto
+        </h4>
+        <address class="not-italic">
+          <p class="font-body text-sm font-light text-paper/60">Bavio 173, Paraná</p>
+          <p class="mt-1 font-body text-sm font-light text-paper/60">Entre Ríos, Argentina</p>
+          <p class="mt-2 font-body text-sm font-light text-paper/60">
+            <a href="mailto:info@carmintattoo.com" class="transition-colors hover:text-copper">info@carmintattoo.com</a>
+          </p>
+        </address>
+      </div>
+
+      <!-- Social -->
+      <div>
+        <h4 class="mb-3 font-body text-xs font-semibold uppercase tracking-widest text-paper/40">
+          Seguinos
+        </h4>
+        <SocialLinks instagram="@carmintattoo" variant="stacked" />
+      </div>
+    </div>
+
+    <div class="mt-8 border-t border-warm-gray/50 pt-6">
+      <div class="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
+        <p class="font-body text-xs font-light text-paper/40">
+          &copy; {new Date().getFullYear()} Carmin Tattoo Studio. Todos los derechos reservados.
+        </p>
+        <p class="font-body text-xs font-light text-paper/30">
+          Mapas &copy; <a href="https://openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer" class="underline transition-colors hover:text-copper">OpenStreetMap</a> contributors. CMS via <a href="https://keystatic.com" target="_blank" rel="noopener noreferrer" class="underline transition-colors hover:text-copper">Keystatic</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>

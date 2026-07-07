@@ -1,0 +1,67 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+export interface Props {
+  items: CollectionEntry<'gallery'>[];
+  artists: CollectionEntry<'artists'>[];
+}
+
+const { items, artists } = Astro.props;
+
+function getArtistName(slug: string): string {
+  const artist = artists.find((a) => a.id === slug);
+  return artist?.data.name ?? slug;
+}
+---
+
+{
+  items.length === 0 ? (
+    <div class="mt-16 text-center">
+      <p class="font-body text-base text-paper/40">
+        Galería vacía — volvé pronto para ver nuevos trabajos.
+      </p>
+      <a
+        href="/contacto"
+        class="mt-4 inline-block font-body text-sm font-semibold uppercase tracking-widest text-copper no-underline transition-colors hover:text-copper-light"
+      >
+        Contactanos
+      </a>
+    </div>
+  ) : (
+    <div class="gallery-grid columns-1 gap-0 sm:columns-2 lg:columns-3 xl:columns-4">
+      {
+        items.map((item, index) => {
+          const artistName = getArtistName(item.data.artist);
+          const styles = item.data.styles.join(', ');
+          return (
+            <div
+              class="gallery-grid-item group relative cursor-pointer overflow-hidden"
+              data-gallery-index={index}
+              data-gallery-slug={item.data.slug}
+              data-artist={item.data.artist}
+              data-styles={item.data.styles.join(',')}
+            >
+              <img
+                src={item.data.image}
+                alt={item.data.title}
+                class="block w-full transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+                decoding="async"
+              />
+
+              <!-- Hover overlay -->
+              <div class="pointer-events-none absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/80 via-black/10 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                <p class="font-display text-lg font-bold italic text-paper">
+                  {artistName}
+                </p>
+                <p class="mt-1 font-body text-xs font-semibold uppercase tracking-widest text-copper">
+                  {styles}
+                </p>
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  )
+}

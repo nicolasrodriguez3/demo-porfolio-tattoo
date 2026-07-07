@@ -68,23 +68,23 @@ Chain strategy: stacked-to-main
 
 | ID | Tarea | Archivos | Deps | Tamaño | Acceptance Criteria |
 |-----|-------|----------|------|--------|-------------------|
-| T-016 | [ ] Crear Hero.astro con título, descripción, CTA | `src/components/Hero.astro` | T-008, T-011 | small | Hero con título desde siteSettings, fondo oscuro, CTA a galería |
-| T-017 | [ ] Crear index.astro con preview de galería | `src/pages/index.astro` | T-016, T-008 | medium | Hero + grilla preview (últimas 6 imágenes), transición fade |
+| T-016 | [x] Crear Hero.astro con título, descripción, CTA | `src/components/Hero.astro` | T-008, T-011 | small | Hero con título desde siteSettings, fondo oscuro, CTA a galería |
+| T-017 | [x] Crear index.astro con preview de galería | `src/pages/index.astro` | T-016, T-008 | medium | Hero + grilla preview (últimas 6 imágenes), transición fade |
 
 ### TG-5: Gallery Page
 
 | ID | Tarea | Archivos | Deps | Tamaño | Acceptance Criteria |
 |-----|-------|----------|------|--------|-------------------|
-| T-018 | [ ] Crear GalleryGrid.astro con masonry CSS columns | `src/components/GalleryGrid.astro` | T-008, T-010 | medium | CSS `column-count`, `break-inside: avoid`, 1/2/3-4 cols según viewport, lazy loading, hover overlay con artista y estilo |
-| T-019 | [ ] Crear GalleryFilters.tsx island (React) | `src/components/GalleryFilters.tsx` | T-008, T-018 | medium | Filtros por estilo destacados visualmente, "Todos" resetea, filtrado client-side, mensaje "Sin resultados", URL refleja filtro activo |
-| T-020 | [ ] Crear galeria.astro como página wiring | `src/pages/galeria.astro` | T-018, T-019, T-011 | small | GalleryFilters + GalleryGrid en página, transición fade, estado vacío manejado |
+| T-018 | [x] Crear GalleryGrid.astro con masonry CSS columns | `src/components/GalleryGrid.astro` | T-008, T-010 | medium | CSS `column-count`, `break-inside: avoid`, 1/2/3-4 cols según viewport, lazy loading, hover overlay con artista y estilo |
+| T-019 | [x] Crear GalleryFilters.tsx island (React) | `src/components/GalleryFilters.tsx` | T-008, T-018 | medium | Filtros por estilo destacados visualmente, "Todos" resetea, filtrado client-side, mensaje "Sin resultados", URL refleja filtro activo |
+| T-020 | [x] Crear galeria.astro como página wiring | `src/pages/galeria.astro` | T-018, T-019, T-011 | small | GalleryFilters + GalleryGrid en página, transición fade, estado vacío manejado |
 
 ### TG-6: Lightbox
 
 | ID | Tarea | Archivos | Deps | Tamaño | Acceptance Criteria |
 |-----|-------|----------|------|--------|-------------------|
-| T-021 | [ ] Crear Lightbox.tsx island con View Transitions API | `src/components/Lightbox.tsx` | T-008 | large | Fullscreen overlay con backdrop rgba(0,0,0,0.9), `document.startViewTransition` para apertura/cierre, navegación por teclado (arrows, Escape), foco atrapado, `role="dialog" aria-modal="true"`, counter "X de Y", fallback CSS fade si no soporta VT API |
-| T-022 | [ ] Wire lightbox a galería y portfolio de artista | `src/components/GalleryGrid.astro` (update), `src/pages/artistas/[slug].astro` (update) | T-021 | medium | Click en imagen abre lightbox, cierra con backdrop/click/foco retorna al trigger |
+| T-021 | [x] Crear Lightbox.tsx island con View Transitions API | `src/components/Lightbox.tsx` | T-008 | large | Fullscreen overlay con backdrop rgba(0,0,0,0.9), `document.startViewTransition` para apertura/cierre, navegación por teclado (arrows, Escape), foco atrapado, `role="dialog" aria-modal="true"`, counter "X de Y", fallback CSS fade si no soporta VT API |
+| T-022 | [x] Wire lightbox a galería | `src/components/GalleryGrid.astro` (data-attributes), `src/components/Lightbox.tsx` (click delegation), `src/pages/galeria.astro` (wiring) | T-021 | medium | Click en imagen abre lightbox respetando filtros activos, navegación solo entre items visibles. Artistas pendiente para PR 3 |
 
 ### TG-7: Artist Pages
 
@@ -128,14 +128,14 @@ Chain strategy: stacked-to-main
 | ✅ TG-1 Scaffold | 5/5 | Configuración inicial del proyecto |
 | ✅ TG-2 CMS | 4/4 | Schemas y Keystatic |
 | ✅ TG-3 Layout | 6/6 | Shell visual base |
-| TG-4 Home | 0/2 | Página principal |
-| TG-5 Gallery | 0/3 | Galería con masonry y filtros |
-| TG-6 Lightbox | 0/2 | Visor de imágenes |
+| TG-4 Home | 2/2 | Página principal |
+| TG-5 Gallery | 3/3 | Galería con masonry y filtros |
+| TG-6 Lightbox | 2/2 | Visor de imágenes |
 | TG-7 Artists | 0/3 | Directorio y perfiles |
 | TG-8 Contact | 0/3 | Formulario y mapa |
 | TG-9 Dark Mode | 0/2 | Tema claro y transiciones |
 | TG-10 SEO | 0/5 | Meta, schema, headers |
-| **Total** | **15/35** | **PR 1 completo** |
+| **Total** | **22/35** | **PR 2 completo** |
 
 ### Orden de implementación recomendado
 

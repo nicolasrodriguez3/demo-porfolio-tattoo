@@ -90,34 +90,34 @@ Chain strategy: stacked-to-main
 
 | ID | Tarea | Archivos | Deps | Tamaño | Acceptance Criteria |
 |-----|-------|----------|------|--------|-------------------|
-| T-023 | [ ] Crear ArtistCard.astro | `src/components/ArtistCard.astro` | T-008, T-010 | small | Foto thumbnail, nombre, tags de estilo, link a `[slug]`, placeholder "Sin trabajos publicados" |
-| T-024 | [ ] Crear artistas/index.astro (directorio) | `src/pages/artistas/index.astro` | T-023, T-011 | medium | Grid de ArtistCards, mensaje "Conociendo a nuestros artistas..." si vacío |
-| T-025 | [ ] Crear artistas/[slug].astro con `getStaticPaths` | `src/pages/artistas/[slug].astro` | T-023, T-008, T-021, T-011 | large | Bio rich text, foto grande, portfolio gallery con lightbox, contacto/social, 404 si slug no existe |
+| T-023 | [x] Crear ArtistCard.astro | `src/components/ArtistCard.astro` | T-008, T-010 | small | Foto thumbnail, nombre, tags de estilo, link a `[slug]`, placeholder "Sin trabajos publicados" |
+| T-024 | [x] Reimplementar artistas/index.astro (directorio) | `src/pages/artistas/index.astro` | T-023, T-011 | medium | Grid de ArtistCards, mensaje "Conociendo a nuestros artistas..." si vacío |
+| T-025 | [x] Crear artistas/[slug].astro con `getStaticPaths` | `src/pages/artistas/[slug].astro` | T-023, T-008, T-021, T-011 | large | Bio rich text, foto grande, portfolio gallery con lightbox, contacto/social, 404 si slug no existe |
 
 ### TG-8: Contact Page
 
 | ID | Tarea | Archivos | Deps | Tamaño | Acceptance Criteria |
 |-----|-------|----------|------|--------|-------------------|
-| T-026 | [ ] Crear ContactForm.tsx island (React) | `src/components/ContactForm.tsx` | T-011 | large | Validación client-side (name, email, message required, email format), honeypot `_gotcha`, rate limit 60s localStorage, estados success/error/loading, POST a Web3Forms, auto-dismiss success 5s |
-| T-027 | [ ] Crear Map.tsx island con Leaflet | `src/components/Map.tsx` | T-011, T-005 | medium | Mapa centrado en Bavio 173, Paraná, pin con popup, atribución OSM, responsive stack abajo en mobile |
-| T-028 | [ ] Crear contacto.astro | `src/pages/contacto.astro` | T-026, T-027, T-011 | small | Form + map side-by-side en desktop, stacked en mobile, datos de contacto desde siteSettings |
+| T-026 | [x] Crear ContactForm.tsx island (React) | `src/components/ContactForm.tsx` | T-011 | large | Validación client-side (name, email, message required, email format), honeypot `_gotcha`, rate limit 60s localStorage, estados success/error/loading, POST a Web3Forms, auto-dismiss success 5s |
+| T-027 | [x] Crear Map.tsx island con Leaflet | `src/components/Map.tsx` | T-011, T-005 | medium | Mapa centrado en Bavio 173, Paraná, pin con popup, atribución OSM, responsive stack abajo en mobile |
+| T-028 | [x] Reimplementar contacto.astro | `src/pages/contacto.astro` | T-026, T-027, T-011 | small | Form + map side-by-side en desktop, stacked en mobile, datos de contacto desde siteSettings |
 
 ### TG-9: Dark Mode
 
 | ID | Tarea | Archivos | Deps | Tamaño | Acceptance Criteria |
 |-----|-------|----------|------|--------|-------------------|
-| T-029 | [ ] Diseñar variante light de todos los componentes | `src/styles/global.css` (update), `src/components/*.astro` (update), `src/pages/*.astro` (update) | T-015 | large | Cada componente tiene variante `dark:` o `light` según corresponda. Light mode: bg claro, texto oscuro, copper accent se mantiene |
-| T-030 | [ ] Implementar transiciones de color sin layout shift | `src/styles/global.css` (update) | T-029 | small | `transition: background-color 0.3s, color 0.3s` en elementos clave. Toggle no mueve layout |
+| T-029 | [x] Diseñar variante light de todos los componentes | `src/styles/global.css` (update), `src/components/*.astro` (update), `src/pages/*.astro` (update) | T-015 | large | Cada componente tiene variante `dark:` o `light` según corresponda. Light mode: bg claro, texto oscuro, copper accent se mantiene |
+| T-030 | [x] Implementar transiciones de color sin layout shift | `src/styles/global.css` (update) | T-029 | small | `transition: background-color 0.3s, color 0.3s` en elementos clave. Toggle no mueve layout |
 
 ### TG-10: SEO & Performance
 
 | ID | Tarea | Archivos | Deps | Tamaño | Acceptance Criteria |
 |-----|-------|----------|------|--------|-------------------|
-| T-031 | [ ] Agregar Open Graph y Twitter Cards en BaseLayout | `src/layouts/BaseLayout.astro` (update) | T-011 | small | Meta tags OG: title, description, image, url, type. Twitter card. Tags dinámicos por página |
-| T-032 | [ ] Agregar JSON-LD Schema.org LocalBusiness | `src/layouts/BaseLayout.astro` (update) | T-008, T-011 | small | `application/ld+json` con name, address, telephone, image, priceRange |
-| T-033 | [ ] Crear robots.txt.ts endpoint | `src/pages/robots.txt.ts` | T-011 | small | Permite todo rastreo, apunta a sitemap.xml |
-| T-034 | [ ] Configurar _headers y _redirects para Cloudflare | `public/_headers`, `public/_redirects` | T-004 | small | CSP headers restrictivos, HTTPS forced, redirects si necesarios |
-| T-035 | [ ] Crear 404.astro personalizada | `src/pages/404.astro` | T-011 | small | Diseño consistente con marca, link a home |
+| T-031 | [x] Agregar Open Graph y Twitter Cards en BaseLayout | `src/layouts/BaseLayout.astro` (update) | T-011 | small | Meta tags OG: title, description, image, url, type. Twitter card. Tags dinámicos por página |
+| T-032 | [x] Agregar JSON-LD Schema.org LocalBusiness | `src/layouts/BaseLayout.astro` (update) | T-008, T-011 | small | `application/ld+json` con name, address, telephone, image, priceRange |
+| T-033 | [x] Crear robots.txt.ts endpoint | `src/pages/robots.txt.ts` | T-011 | small | Permite todo rastreo, apunta a sitemap.xml |
+| T-034 | [x] Configurar _headers y _redirects para Cloudflare | `public/_headers`, `public/_redirects` | T-004 | small | CSP headers restrictivos, HTTPS forced, redirects si necesarios |
+| T-035 | [x] Reimplementar 404.astro personalizada | `src/pages/404.astro` | T-011 | small | Diseño consistente con marca, link a home |
 
 ---
 
@@ -128,14 +128,14 @@ Chain strategy: stacked-to-main
 | ✅ TG-1 Scaffold | 5/5 | Configuración inicial del proyecto |
 | ✅ TG-2 CMS | 4/4 | Schemas y Keystatic |
 | ✅ TG-3 Layout | 6/6 | Shell visual base |
-| TG-4 Home | 2/2 | Página principal |
-| TG-5 Gallery | 3/3 | Galería con masonry y filtros |
-| TG-6 Lightbox | 2/2 | Visor de imágenes |
-| TG-7 Artists | 0/3 | Directorio y perfiles |
-| TG-8 Contact | 0/3 | Formulario y mapa |
-| TG-9 Dark Mode | 0/2 | Tema claro y transiciones |
-| TG-10 SEO | 0/5 | Meta, schema, headers |
-| **Total** | **22/35** | **PR 2 completo** |
+| ✅ TG-4 Home | 2/2 | Página principal |
+| ✅ TG-5 Gallery | 3/3 | Galería con masonry y filtros |
+| ✅ TG-6 Lightbox | 2/2 | Visor de imágenes |
+| ✅ TG-7 Artists | 3/3 | Directorio y perfiles |
+| ✅ TG-8 Contact | 3/3 | Formulario y mapa |
+| ✅ TG-9 Dark Mode | 2/2 | Tema claro y transiciones |
+| ✅ TG-10 SEO | 5/5 | Meta, schema, headers |
+| **Total** | **35/35** | **PR 3 completo** |
 
 ### Orden de implementación recomendado
 

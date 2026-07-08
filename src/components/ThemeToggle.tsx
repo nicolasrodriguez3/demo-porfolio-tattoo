@@ -41,7 +41,7 @@ export default function ThemeToggle() {
     <button
       onClick={toggle}
       aria-label={theme === 'dark' ? 'Activar modo claro' : 'Activar modo oscuro'}
-      className="flex h-8 w-8 items-center justify-center rounded-full transition-colors hover:bg-warm-gray"
+      className="flex h-8 w-8 items-center justify-center rounded-full transition-colors hover:dark:bg-warm-gray hover:bg-ink/10"
     >
       {theme === 'dark' ? (
         // Sun icon (dark mode → switch to light)

@@ -37,7 +37,7 @@ function getArtistName(slug: string): string {
             <div
               class="gallery-grid-item group relative cursor-pointer overflow-hidden"
               data-gallery-index={index}
-              data-gallery-slug={item.data.slug}
+              data-gallery-slug={item.data.slug ?? item.id}
               data-artist={item.data.artist}
               data-styles={item.data.styles.join(',')}
             >

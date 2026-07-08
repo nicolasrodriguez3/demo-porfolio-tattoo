@@ -11,7 +11,7 @@ export async function getStaticPaths() {
   const galleryItems = await getCollection('gallery');
 
   return artists.map((artist) => ({
-    params: { slug: artist.data.slug },
+    params: { slug: artist.data.slug ?? artist.id },
     props: { artist, galleryItems },
   }));
 }
@@ -24,14 +24,14 @@ export interface Props {
 const { artist, galleryItems } = Astro.props;
 const published = galleryItems.filter((g: any) => g.data.published !== false);
 const portfolioItems = published.filter(
-  (g: any) => g.data.artist === artist.data.slug,
+  (g: any) => g.data.artist === (artist.data.slug ?? artist.id),
 );
 
 // Serializable data for the Lightbox island
 const imagesForJS = portfolioItems.map((item: any) => ({
   src: item.data.image,
   title: item.data.title,
-  slug: item.data.slug,
+  slug: item.data.slug ?? item.id,
   description: item.data.description ?? '',
   styles: item.data.styles,
   artist: artist.data.name,
@@ -129,7 +129,7 @@ const hasPortfolio = portfolioItems.length > 0;
                     <div
                       class="gallery-grid-item group relative mb-4 cursor-pointer overflow-hidden break-inside-avoid"
                       data-gallery-index={index}
-                      data-gallery-slug={item.data.slug}
+                      data-gallery-slug={item.data.slug ?? item.id}
                     >
                       <img
                         src={item.data.image}

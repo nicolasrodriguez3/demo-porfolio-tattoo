@@ -20,7 +20,7 @@ const allStyles = [...new Set(publishedItems.flatMap((g) => g.data.styles))];
 const imagesForJS = publishedItems.map((item) => ({
   src: item.data.image,
   title: item.data.title,
-  slug: item.data.slug,
+  slug: item.data.slug ?? item.id,
   description: item.data.description ?? '',
   styles: item.data.styles,
   artist: artists.find((a) => a.id === item.data.artist)?.data.name ?? item.data.artist,

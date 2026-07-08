@@ -5,7 +5,7 @@ const artists = defineCollection({
   loader: glob({ pattern: '**/*.yaml', base: './src/content/artists' }),
   schema: z.object({
     name: z.string(),
-    slug: z.string(),
+    slug: z.string().optional(),
     photo: z.string(),
     bio: z.string(),
     styles: z.array(z.string()),
@@ -22,7 +22,7 @@ const gallery = defineCollection({
   loader: glob({ pattern: '**/*.yaml', base: './src/content/gallery' }),
   schema: z.object({
     title: z.string(),
-    slug: z.string(),
+    slug: z.string().optional(),
     image: z.string(),
     description: z.string().optional(),
     styles: z.array(z.string()),

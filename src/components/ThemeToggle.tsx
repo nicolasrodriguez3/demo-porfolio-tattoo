@@ -21,8 +21,10 @@ export default function ThemeToggle() {
     const html = document.documentElement;
     if (theme === 'dark') {
       html.classList.add('dark');
+      html.style.backgroundColor = '#0A0A0A';
     } else {
       html.classList.remove('dark');
+      html.style.backgroundColor = '#F5F0EB';
     }
     try {
       localStorage.setItem('theme', theme);

@@ -62,8 +62,28 @@ const fullImage = image.startsWith('http') ? image : `${siteUrl}${image}`;
         } catch(e) {}
         if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
           document.documentElement.classList.add('dark');
+          document.documentElement.style.backgroundColor = '#0A0A0A';
+        } else {
+          document.documentElement.style.backgroundColor = '#F5F0EB';
         }
       })();
+    </script>
+
+    <!-- Guard for view transitions: restore inline bg before swap to prevent flash -->
+    <script>
+      document.addEventListener('astro:before-swap', function() {
+        var theme = null;
+        try {
+          theme = localStorage.getItem('theme');
+        } catch(e) {}
+        if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+          document.documentElement.style.backgroundColor = '#0A0A0A';
+        } else {
+          document.documentElement.classList.remove('dark');
+          document.documentElement.style.backgroundColor = '#F5F0EB';
+        }
+      });
     </script>
 
     <ClientRouter />

@@ -1,33 +1,46 @@
 import { config, fields, collection, singleton } from '@keystatic/core';
 
+const storage = import.meta.env.KEYSTATIC_GITHUB_CLIENT_ID
+  ? {
+      kind: 'github' as const,
+      repo: { owner: import.meta.env.KEYSTATIC_REPO_OWNER || 'tu-org', name: import.meta.env.KEYSTATIC_REPO_NAME || 'demo-portfolio-tattoo' },
+    }
+  : {
+      kind: 'local' as const,
+    };
+
 export default config({
-  storage: {
-    kind: 'local',
-  },
+  storage,
   collections: {
     artists: collection({
       label: 'Artistas',
       slugField: 'name',
-      path: 'src/content/artists/',
+      path: 'src/content/artists/*',
       format: 'yaml',
       schema: {
         name: fields.text({ label: 'Nombre', validation: { isRequired: true } }),
         slug: fields.text({ label: 'Slug (URL)', validation: { isRequired: true } }),
-        igHandle: fields.text({ label: 'Instagram' }),
         photo: fields.text({ label: 'Ruta de foto' }),
         bio: fields.text({ label: 'Biografía', multiline: true }),
-        specialties: fields.array(
-          fields.text({ label: 'Especialidad' }),
-          { label: 'Especialidades', itemLabel: (props) => props.value }
+        styles: fields.array(
+          fields.text({ label: 'Estilo' }),
+          { label: 'Estilos', itemLabel: (props) => props.value }
         ),
-        order: fields.number({ label: 'Orden de aparición' }),
+        social: fields.object({
+          instagram: fields.text({ label: 'Instagram' }),
+          email: fields.text({ label: 'Email' }),
+        }, { label: 'Redes sociales' }),
+        portfolioImages: fields.array(
+          fields.text({ label: 'URL de imagen' }),
+          { label: 'Imágenes del portfolio', itemLabel: () => '' }
+        ),
         published: fields.checkbox({ label: 'Publicado', defaultValue: true }),
       },
     }),
     gallery: collection({
       label: 'Galería',
       slugField: 'title',
-      path: 'src/content/gallery/',
+      path: 'src/content/gallery/*',
       format: 'yaml',
       schema: {
         title: fields.text({ label: 'Título', validation: { isRequired: true } }),
@@ -39,6 +52,8 @@ export default config({
           { label: 'Estilos', itemLabel: (props) => props.value }
         ),
         artist: fields.text({ label: 'Artista (slug)' }),
+        width: fields.number({ label: 'Ancho (px)' }),
+        height: fields.number({ label: 'Alto (px)' }),
         featured: fields.checkbox({ label: 'Destacado', defaultValue: false }),
         published: fields.checkbox({ label: 'Publicado', defaultValue: true }),
       },
@@ -51,11 +66,15 @@ export default config({
       format: 'yaml',
       schema: {
         studioName: fields.text({ label: 'Nombre del estudio', validation: { isRequired: true } }),
-        description: fields.text({ label: 'Descripción', multiline: true }),
         address: fields.text({ label: 'Dirección', validation: { isRequired: true } }),
         phone: fields.text({ label: 'Teléfono' }),
         email: fields.text({ label: 'Email', validation: { isRequired: true } }),
-        instagram: fields.text({ label: 'Instagram' }),
+        socialLinks: fields.object({
+          instagram: fields.text({ label: 'Instagram' }),
+          facebook: fields.text({ label: 'Facebook' }),
+        }, { label: 'Redes sociales' }),
+        homeHeroTitle: fields.text({ label: 'Título del hero' }),
+        homeHeroDescription: fields.text({ label: 'Descripción del hero', multiline: true }),
         schedule: fields.text({ label: 'Horarios', multiline: true }),
       },
     }),

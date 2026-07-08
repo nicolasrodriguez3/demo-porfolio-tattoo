@@ -1,12 +1,12 @@
-studioName: Carmin Tattoo Studio
-address: "Bavio 173, Paraná, Entre Ríos"
-phone: "+54 343 123-4567"
-email: "info@carmintattoo.com"
-socialLinks:
-  instagram: "@carmintattoo"
-  facebook: ""
-homeHeroTitle: "Arte sobre la piel"
-homeHeroDescription: "Estudio de tatuaje profesional en Paraná. Especialistas en blackwork, tradicional, realismo, dotwork y más."
+studioName: Tattoo Studio
+address: San Martín 123, Paraná, Entre Ríos
+phone: +54 343 123-4567
+email: info@tattoostudio.com
+socialLinks: {}
+homeHeroTitle: Arte sobre la piel
+homeHeroDescription: >-
+  Estudio de tatuaje profesional en Paraná. Especialistas en blackwork,
+  tradicional, realismo, dotwork y más.
 schedule: |
   Lun – Vie: 15:00 – 20:00
   Sáb: 10:00 – 14:00

@@ -14,7 +14,7 @@ export default config({
   collections: {
     artists: collection({
       label: 'Artistas',
-      slugField: 'name',
+      slugField: 'slug',
       path: 'src/content/artists/*',
       format: 'yaml',
       schema: {
@@ -39,7 +39,7 @@ export default config({
     }),
     gallery: collection({
       label: 'Galería',
-      slugField: 'title',
+      slugField: 'slug',
       path: 'src/content/gallery/*',
       format: 'yaml',
       schema: {

@@ -1,11 +1,15 @@
 name: Facundo
 slug: facundo
 photo: /images/artists/facundo.jpg
-bio: "Especialista en blackwork y dotwork. Con más de 8 años de experiencia, Facundo se destaca por sus diseños geométricos de alto contraste y su precisión en líneas finas. Cada pieza es una composición única que juega con el volumen del cuerpo."
+bio: >-
+  Especialista en blackwork y dotwork. Con más de 8 años de experiencia, Facundo
+  se destaca por sus diseños geométricos de alto contraste y su precisión en
+  líneas finas. Cada pieza es una composición única que juega con el volumen del
+  cuerpo.
 styles:
   - blackwork
   - dotwork
   - geométrico
-social:
-  instagram: "@facundo.tattoo"
+social: {}
+portfolioImages: []
 published: true

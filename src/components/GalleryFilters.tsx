@@ -94,8 +94,8 @@ export default function GalleryFilters({ availableStyles }: GalleryFiltersProps)
   }, [applyFilter]);
 
   return (
-    <div class="mb-10">
-      <div class="flex flex-wrap gap-2" role="group" aria-label="Filtros por estilo">
+    <div className="mb-10">
+      <div className="flex flex-wrap gap-2" role="group" aria-label="Filtros por estilo">
         {filters.map((f) => {
           const isActive = activeFilter === f.label;
           return (
@@ -118,7 +118,7 @@ export default function GalleryFilters({ availableStyles }: GalleryFiltersProps)
       {/* Mensaje sin resultados */}
       <div
         ref={noResultsRef}
-        class="mt-16 hidden text-center"
+        className="mt-16 hidden text-center"
         role="status"
       >
         <p className="font-display text-2xl font-bold italic text-ink/30 dark:text-paper/30">

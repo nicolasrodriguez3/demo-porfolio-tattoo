@@ -1,0 +1,15 @@
+name: Karen
+slug: karen
+photo: /images/artists/keyy.jpg
+bio: >-
+  Apasionada del color y el realismo, transforma ideas en obras de arte sobre la
+  piel, combinando técnicas de acuarela con detalles hiperrealistas. Su estilo
+  se caracteriza por las transiciones suaves y las paletas vibrantes.
+styles:
+  - realismo
+  - color
+  - acuarela
+social: {}
+portfolioImages:
+  - /images/gallery/flores-acuarela.jpg
+published: true

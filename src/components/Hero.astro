@@ -9,13 +9,13 @@ const { siteSettings } = Astro.props;
 const { studioName, homeHeroTitle, homeHeroDescription } = siteSettings.data;
 ---
 
-<section class="relative flex min-h-[90vh] items-center justify-center overflow-hidden bg-ink-black">
-  <!-- Fondo degradado con efecto de luz -->
-  <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,_var(--color-charcoal)_0%,_transparent_70%)]" />
+<section class="relative flex min-h-[90vh] items-center justify-center overflow-hidden bg-gradient-to-b from-paper to-stone-100 dark:bg-none dark:bg-ink-black">
+  <!-- Fondo degradado con efecto de luz (dark mode) -->
+  <div class="absolute inset-0 hidden dark:block bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,_var(--color-charcoal)_0%,_transparent_70%)]" />
 
   <!-- Patrón texturizado sutil -->
-  <div class="absolute inset-0 opacity-[0.03]"
-    style="background-image: radial-gradient(circle, #F5F0EB 1px, transparent 1px); background-size: 40px 40px;"
+  <div class="absolute inset-0 opacity-[0.03] dark:opacity-[0.03]"
+    style="background-image: radial-gradient(circle, #B87333 1px, transparent 1px); background-size: 40px 40px;"
   />
 
   <div class="relative z-10 mx-auto max-w-4xl px-4 text-center">
@@ -23,11 +23,11 @@ const { studioName, homeHeroTitle, homeHeroDescription } = siteSettings.data;
       {homeHeroTitle}
     </p>
 
-    <h1 class="font-display text-6xl font-bold italic leading-[1.1] tracking-tight text-paper sm:text-7xl lg:text-8xl">
+    <h1 class="font-display text-6xl font-bold italic leading-[1.1] tracking-tight text-ink transition-colors dark:text-paper sm:text-7xl lg:text-8xl">
       {studioName}
     </h1>
 
-    <p class="mx-auto mt-6 max-w-2xl font-body text-base font-light leading-relaxed text-paper/50 sm:text-lg">
+    <p class="mx-auto mt-6 max-w-2xl font-body text-base font-light leading-relaxed text-ink/50 transition-colors dark:text-paper/50 sm:text-lg">
       {homeHeroDescription}
     </p>
 
@@ -50,5 +50,5 @@ const { studioName, homeHeroTitle, homeHeroDescription } = siteSettings.data;
   </div>
 
   <!-- Gradiente inferior de transición -->
-  <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-ink-black to-transparent" />
+  <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-paper to-transparent dark:from-ink-black" />
 </section>

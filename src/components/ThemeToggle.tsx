@@ -2,8 +2,16 @@ import { useState, useEffect } from 'react';
 
 function getInitialTheme(): 'dark' | 'light' {
   if (typeof document === 'undefined') return 'dark';
-  const html = document.documentElement;
-  return html.classList.contains('dark') ? 'dark' : 'light';
+  // Check localStorage first — survives view transitions that reset DOM classes
+  try {
+    const saved = localStorage.getItem('theme');
+    if (saved === 'dark' || saved === 'light') return saved;
+  } catch {
+    // localStorage unavailable
+  }
+  // Fallback: system preference
+  if (window.matchMedia('(prefers-color-scheme: dark)').matches) return 'dark';
+  return 'light';
 }
 
 export default function ThemeToggle() {

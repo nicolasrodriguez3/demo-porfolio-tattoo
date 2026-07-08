@@ -69,19 +69,20 @@ const fullImage = image.startsWith('http') ? image : `${siteUrl}${image}`;
       })();
     </script>
 
-    <!-- Guard for view transitions: restore inline bg before swap to prevent flash -->
+    <!-- Guard for view transitions: inject theme into the incoming document before swap.
+         Astro's swapRootAttributes() copies attributes from the new document to the live
+         document, so modifying event.newDocument is the only way the dark class survives. -->
     <script>
-      document.addEventListener('astro:before-swap', function() {
+      document.addEventListener('astro:before-swap', function(event) {
         var theme = null;
         try {
           theme = localStorage.getItem('theme');
         } catch(e) {}
         if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-          document.documentElement.classList.add('dark');
-          document.documentElement.style.backgroundColor = '#0A0A0A';
+          event.newDocument.documentElement.classList.add('dark');
+          event.newDocument.documentElement.style.backgroundColor = '#0A0A0A';
         } else {
-          document.documentElement.classList.remove('dark');
-          document.documentElement.style.backgroundColor = '#F5F0EB';
+          event.newDocument.documentElement.style.backgroundColor = '#F5F0EB';
         }
       });
     </script>

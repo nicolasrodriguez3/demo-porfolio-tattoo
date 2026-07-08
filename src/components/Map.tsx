@@ -6,7 +6,7 @@ interface MapProps {
 }
 
 export default function Map({
-  studioName = 'Carmin Tattoo Studio',
+  studioName = 'Tattoo Studio',
   address = 'Bavio 173, Paraná, Entre Ríos',
 }: MapProps) {
   const mapRef = useRef<HTMLDivElement>(null);

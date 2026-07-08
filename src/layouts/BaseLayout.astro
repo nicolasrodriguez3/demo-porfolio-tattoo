@@ -11,14 +11,14 @@ export interface Props {
 }
 
 const {
-  title = 'Carmin Tattoo Studio',
+  title = 'Tattoo Studio',
   description = 'Estudio de tatuaje profesional en Paraná, Entre Ríos. Especialistas en blackwork, tradicional, realismo, dotwork y más.',
   image = '/images/og-default.jpg',
-  url = 'https://carmin-tattoo.vercel.app',
+  url = 'https://tattoo-studio.vercel.app',
   type = 'website',
 } = Astro.props;
 
-const siteUrl = 'https://carmin-tattoo.vercel.app';
+const siteUrl = 'https://tattoo-studio.vercel.app';
 const fullUrl = url.startsWith('http') ? url : `${siteUrl}${url}`;
 const fullImage = image.startsWith('http') ? image : `${siteUrl}${image}`;
 ---
@@ -37,7 +37,7 @@ const fullImage = image.startsWith('http') ? image : `${siteUrl}${image}`;
     <meta property="og:url" content={fullUrl} />
     <meta property="og:type" content={type} />
     <meta property="og:locale" content="es_AR" />
-    <meta property="og:site_name" content="Carmin Tattoo Studio" />
+    <meta property="og:site_name" content="Tattoo Studio" />
 
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -96,15 +96,15 @@ const fullImage = image.startsWith('http') ? image : `${siteUrl}${image}`;
       {
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
-        "name": "Carmin Tattoo Studio",
-        "image": "https://carmin-tattoo.vercel.app/images/og-default.jpg",
-        "url": "https://carmin-tattoo.vercel.app",
+        "name": "Tattoo Studio",
+        "image": "https://tattoo-studio.vercel.app/images/og-default.jpg",
+        "url": "https://tattoo-studio.vercel.app",
         "telephone": "+54 343 123-4567",
-        "email": "info@carmintattoo.com",
+        "email": "info@tattoostudio.com",
         "priceRange": "$$",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "Bavio 173",
+          "streetAddress": "San Martín 123",
           "addressLocality": "Paraná",
           "addressRegion": "Entre Ríos",
           "addressCountry": "AR"
@@ -124,7 +124,7 @@ const fullImage = image.startsWith('http') ? image : `${siteUrl}${image}`;
           }
         ],
         "sameAs": [
-          "https://instagram.com/carmintattoo"
+          "https://instagram.com/tattoostudio"
         ]
       }
     </script>

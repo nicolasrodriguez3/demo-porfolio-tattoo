@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
 
-const site = 'https://carmin-tattoo.vercel.app';
+const site = 'https://tattoo-studio.vercel.app';
 
 export const GET: APIRoute = () => {
   const robotsTxt = [

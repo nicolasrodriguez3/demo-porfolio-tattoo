@@ -2,32 +2,32 @@
 import ThemeToggle from './ThemeToggle';
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 bg-ink-black/80 backdrop-blur-md border-b border-warm-gray transition-colors">
+<header class="fixed top-0 left-0 right-0 z-50 bg-paper/80 backdrop-blur-md border-b border-stone-200 transition-colors dark:bg-ink-black/80 dark:border-warm-gray">
   <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
     <!-- Logo -->
     <a href="/" class="font-display text-2xl font-bold italic tracking-wide text-copper no-underline transition-colors hover:text-copper-light">
-      CARMIN TATTOO
+      TATTOO STUDIO
     </a>
 
     <!-- Desktop nav -->
     <ul class="hidden items-center gap-8 md:flex">
       <li>
-        <a href="/" class="font-body text-sm font-light uppercase tracking-widest text-paper transition-colors hover:text-copper no-underline">
+        <a href="/" class="font-body text-sm font-light uppercase tracking-widest text-ink transition-colors hover:text-copper no-underline dark:text-paper">
           Inicio
         </a>
       </li>
       <li>
-        <a href="/galeria" class="font-body text-sm font-light uppercase tracking-widest text-paper transition-colors hover:text-copper no-underline">
+        <a href="/galeria" class="font-body text-sm font-light uppercase tracking-widest text-ink transition-colors hover:text-copper no-underline dark:text-paper">
           Galería
         </a>
       </li>
       <li>
-        <a href="/artistas" class="font-body text-sm font-light uppercase tracking-widest text-paper transition-colors hover:text-copper no-underline">
+        <a href="/artistas" class="font-body text-sm font-light uppercase tracking-widest text-ink transition-colors hover:text-copper no-underline dark:text-paper">
           Artistas
         </a>
       </li>
       <li>
-        <a href="/contacto" class="font-body text-sm font-light uppercase tracking-widest text-paper transition-colors hover:text-copper no-underline">
+        <a href="/contacto" class="font-body text-sm font-light uppercase tracking-widest text-ink transition-colors hover:text-copper no-underline dark:text-paper">
           Contacto
         </a>
       </li>
@@ -40,32 +40,32 @@ import ThemeToggle from './ThemeToggle';
     <div class="flex items-center gap-3 md:hidden">
       <ThemeToggle client:load />
       <button class="flex flex-col gap-1.5" aria-label="Menú de navegación" data-mobile-menu-toggle>
-        <span class="block h-px w-6 bg-paper transition-colors"></span>
-        <span class="block h-px w-6 bg-paper transition-colors"></span>
-        <span class="block h-px w-6 bg-paper transition-colors"></span>
+        <span class="block h-px w-6 bg-ink transition-colors dark:bg-paper"></span>
+        <span class="block h-px w-6 bg-ink transition-colors dark:bg-paper"></span>
+        <span class="block h-px w-6 bg-ink transition-colors dark:bg-paper"></span>
       </button>
     </div>
 
     <!-- Mobile menu dropdown -->
-    <div class="absolute left-0 right-0 top-full hidden border-b border-warm-gray bg-ink-black/95 backdrop-blur-md" data-mobile-menu>
+    <div class="absolute left-0 right-0 top-full hidden border-b border-stone-200 bg-paper/95 backdrop-blur-md dark:bg-ink-black/95 dark:border-warm-gray" data-mobile-menu>
       <ul class="flex flex-col gap-2 px-4 py-6">
         <li>
-          <a href="/" class="block font-body text-base font-light uppercase tracking-widest text-paper transition-colors hover:text-copper no-underline">
+          <a href="/" class="block font-body text-base font-light uppercase tracking-widest text-ink transition-colors hover:text-copper no-underline dark:text-paper">
             Inicio
           </a>
         </li>
         <li>
-          <a href="/galeria" class="block font-body text-base font-light uppercase tracking-widest text-paper transition-colors hover:text-copper no-underline">
+          <a href="/galeria" class="block font-body text-base font-light uppercase tracking-widest text-ink transition-colors hover:text-copper no-underline dark:text-paper">
             Galería
           </a>
         </li>
         <li>
-          <a href="/artistas" class="block font-body text-base font-light uppercase tracking-widest text-paper transition-colors hover:text-copper no-underline">
+          <a href="/artistas" class="block font-body text-base font-light uppercase tracking-widest text-ink transition-colors hover:text-copper no-underline dark:text-paper">
             Artistas
           </a>
         </li>
         <li>
-          <a href="/contacto" class="block font-body text-base font-light uppercase tracking-widest text-paper transition-colors hover:text-copper no-underline">
+          <a href="/contacto" class="block font-body text-base font-light uppercase tracking-widest text-ink transition-colors hover:text-copper no-underline dark:text-paper">
             Contacto
           </a>
         </li>
@@ -84,7 +84,7 @@ import ThemeToggle from './ThemeToggle';
   if (toggle && menu) {
     toggle.addEventListener('click', () => {
       const expanded = toggle.getAttribute('aria-expanded') === 'true';
-      toggle.setAttribute('aria-expanded', !expanded);
+      toggle.setAttribute('aria-expanded', String(!expanded));
       menu.classList.toggle('hidden', expanded);
     });
   }

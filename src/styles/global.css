@@ -15,33 +15,37 @@
 }
 
 /*
-  Dark mode base styles.
-  The `.dark` class is applied to `<html>` via inline blocking script in BaseLayout.
-  The site defaults to dark theme; light mode removes the `.dark` class.
+  Dark mode: `.dark` class on `<html>` enables dark aesthetic.
+  Default (no class) is light mode.
+  The inline blocking script in BaseLayout ensures no FOUC.
+  Transitions on color/background-color are applied to key elements
+  to prevent layout shift on theme toggle.
 */
 
 :root {
-  color-scheme: dark;
-}
-
-:root:not(.dark) {
   color-scheme: light;
 }
 
-/* Base body styles */
+:root.dark {
+  color-scheme: dark;
+}
+
+/* ── Base body styles ──────────────────────────────────── */
+
 body {
   font-family: var(--font-body);
-  background-color: var(--color-ink-black);
-  color: var(--color-paper);
+  background-color: var(--color-paper);
+  color: var(--color-ink);
   transition: background-color 0.3s, color 0.3s;
 }
 
-:root:not(.dark) body {
-  background-color: var(--color-paper);
-  color: var(--color-ink);
+:root.dark body {
+  background-color: var(--color-ink-black);
+  color: var(--color-paper);
 }
 
-/* Skip-to-content link */
+/* ── Skip-to-content link ──────────────────────────────── */
+
 .skip-to-content {
   position: absolute;
   top: -100%;
@@ -58,8 +62,68 @@ body {
   top: 0;
 }
 
-/* Selection styling */
+/* ── Selection ─────────────────────────────────────────── */
+
 ::selection {
   background-color: var(--color-copper);
   color: var(--color-paper);
+}
+
+/* ── Section backgrounds (used across pages) ───────────── */
+
+.section-dark {
+  background-color: var(--color-ink-black);
+  color: var(--color-paper);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+:root.dark .section-dark {
+  background-color: var(--color-ink-black);
+  color: var(--color-paper);
+}
+
+.section-light {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+:root.dark .section-light {
+  background-color: var(--color-ink-black);
+  color: var(--color-paper);
+}
+
+/* ── Cards (used for artist cards, gallery items, etc.) ── */
+
+.card {
+  background-color: #FFFFFF;
+  border-color: #D4D0CB;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+:root.dark .card {
+  background-color: var(--color-charcoal);
+  border-color: var(--color-warm-gray);
+}
+
+/* ── Text utilities for theme-aware opacity ────────────── */
+
+.text-muted {
+  color: rgba(26, 26, 26, 0.4);
+  transition: color 0.3s;
+}
+
+:root.dark .text-muted {
+  color: rgba(245, 240, 235, 0.4);
+}
+
+/* ── Border utilities ──────────────────────────────────── */
+
+.border-theme {
+  border-color: #D4D0CB;
+  transition: border-color 0.3s;
+}
+
+:root.dark .border-theme {
+  border-color: var(--color-warm-gray);
 }

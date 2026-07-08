@@ -105,7 +105,7 @@ export default function GalleryFilters({ availableStyles }: GalleryFiltersProps)
               className={`cursor-pointer rounded-sm border px-4 py-2 font-body text-xs font-semibold uppercase tracking-widest no-underline transition-all ${
                 isActive
                   ? 'border-copper bg-copper text-paper shadow-sm shadow-copper/20'
-                  : 'border-warm-gray bg-transparent text-paper/60 hover:border-paper/30 hover:text-paper'
+                  : 'border-stone-300 bg-transparent text-ink/60 hover:border-ink/30 hover:text-ink dark:border-warm-gray dark:text-paper/60 dark:hover:border-paper/30 dark:hover:text-paper'
               }`}
               aria-pressed={isActive}
             >
@@ -121,10 +121,10 @@ export default function GalleryFilters({ availableStyles }: GalleryFiltersProps)
         class="mt-16 hidden text-center"
         role="status"
       >
-        <p class="font-display text-2xl font-bold italic text-paper/30">
+        <p className="font-display text-2xl font-bold italic text-ink/30 dark:text-paper/30">
           Sin resultados
         </p>
-        <p class="mt-2 font-body text-sm text-paper/40">
+        <p className="mt-2 font-body text-sm text-ink/40 dark:text-paper/40">
           No hay trabajos con ese estilo. Probá con otro filtro.
         </p>
       </div>

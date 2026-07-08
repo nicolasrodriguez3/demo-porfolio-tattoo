@@ -31,18 +31,18 @@ function getArtistName(slug: string): string {
 
   <!-- Featured gallery preview -->
   {featuredItems.length > 0 && (
-    <section class="bg-ink-black px-4 pb-32 pt-8">
+    <section class="bg-paper px-4 pb-32 pt-8 transition-colors dark:bg-ink-black">
       <div class="mx-auto max-w-7xl">
         <div class="mb-12 text-center">
-          <h2 class="font-display text-3xl font-bold italic text-paper sm:text-4xl">
+          <h2 class="font-display text-3xl font-bold italic text-ink transition-colors dark:text-paper sm:text-4xl">
             Trabajos destacados
           </h2>
-          <p class="mt-3 font-body text-sm font-light text-paper/40">
+          <p class="mt-3 font-body text-sm font-light text-ink/40 dark:text-paper/40">
             Una selección de nuestras últimas piezas
           </p>
         </div>
 
-        <div class="columns-1 gap-4 sm:columns-2 lg:columns-3">
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {
             featuredItems.map((item) => {
               const artistName = getArtistName(item.data.artist);
@@ -55,7 +55,7 @@ function getArtistName(slug: string): string {
                     loading="lazy"
                     decoding="async"
                   />
-                  <div class="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/80 via-black/10 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  <div class="absolute inset-0 flex flex-col justify-end bg-linear-to-t from-black/80 via-black/10 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     <p class="font-display text-lg font-bold italic text-paper">
                       {item.data.title}
                     </p>

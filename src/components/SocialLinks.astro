@@ -16,19 +16,19 @@ const ulClass = variant === 'stacked' ? 'flex flex-col gap-2' : 'flex items-cent
         href={`https://instagram.com/${instagram.replace('@', '')}`}
         target="_blank"
         rel="noopener noreferrer"
-        class="font-body text-sm font-light uppercase tracking-widest text-paper transition-colors hover:text-copper no-underline"
+        class="font-body text-sm font-light uppercase tracking-widest text-ink transition-colors hover:text-copper no-underline dark:text-paper"
       >
         Instagram
       </a>
     </li>
   )}
-  {facebook && (
+  {facebook && facebook.trim() && (
     <li>
       <a
         href={`https://facebook.com/${facebook}`}
         target="_blank"
         rel="noopener noreferrer"
-        class="font-body text-sm font-light uppercase tracking-widest text-paper transition-colors hover:text-copper no-underline"
+        class="font-body text-sm font-light uppercase tracking-widest text-ink transition-colors hover:text-copper no-underline dark:text-paper"
       >
         Facebook
       </a>

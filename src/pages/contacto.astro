@@ -2,7 +2,10 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import ContactForm from '../components/ContactForm';
+import Map from '../components/Map';
 import { getCollection } from 'astro:content';
+import 'leaflet/dist/leaflet.css';
 
 const settings = await getCollection('siteSettings');
 const site = settings[0]?.data;
@@ -16,53 +19,54 @@ const site = settings[0]?.data;
     <Header />
   </Fragment>
 
-  <section class="bg-ink-black px-4 pb-24 pt-8">
+  <section class="bg-paper px-4 pb-24 pt-8 transition-colors dark:bg-ink-black">
     <div class="mx-auto max-w-6xl">
-      <h1 class="font-display text-4xl font-bold italic text-paper">Contacto</h1>
-      <p class="mt-2 font-body text-sm font-light text-paper/40">
+      <h1 class="font-display text-4xl font-bold italic text-ink transition-colors dark:text-paper">Contacto</h1>
+      <p class="mt-2 font-body text-sm font-light text-ink/40 dark:text-paper/40">
         Escribinos o visitanos en el estudio
       </p>
 
       <div class="mt-10 grid gap-10 lg:grid-cols-2">
-        <!-- Contact info -->
+        <!-- Form column -->
         <div>
+          <ContactForm client:load />
+        </div>
+
+        <!-- Info + Map column -->
+        <div class="flex flex-col gap-8">
           {site && (
             <div class="space-y-6">
               <div>
-                <h3 class="font-body text-xs font-semibold uppercase tracking-widest text-paper/40">Dirección</h3>
-                <p class="mt-1 font-body text-base text-paper">{site.address}</p>
+                <h3 class="font-body text-xs font-semibold uppercase tracking-widest text-ink/40 dark:text-paper/40">Dirección</h3>
+                <p class="mt-1 font-body text-base text-ink dark:text-paper">{site.address}</p>
               </div>
               <div>
-                <h3 class="font-body text-xs font-semibold uppercase tracking-widest text-paper/40">Email</h3>
-                <p class="mt-1 font-body text-base text-paper">
+                <h3 class="font-body text-xs font-semibold uppercase tracking-widest text-ink/40 dark:text-paper/40">Email</h3>
+                <p class="mt-1 font-body text-base text-ink dark:text-paper">
                   <a href={`mailto:${site.email}`} class="transition-colors hover:text-copper">{site.email}</a>
                 </p>
               </div>
               {site.phone && (
                 <div>
-                  <h3 class="font-body text-xs font-semibold uppercase tracking-widest text-paper/40">Teléfono</h3>
-                  <p class="mt-1 font-body text-base text-paper">{site.phone}</p>
+                  <h3 class="font-body text-xs font-semibold uppercase tracking-widest text-ink/40 dark:text-paper/40">Teléfono</h3>
+                  <p class="mt-1 font-body text-base text-ink dark:text-paper">{site.phone}</p>
                 </div>
               )}
               {site.schedule && (
                 <div>
-                  <h3 class="font-body text-xs font-semibold uppercase tracking-widest text-paper/40">Horarios</h3>
-                  <p class="mt-1 font-body text-base text-paper whitespace-pre-line">{site.schedule}</p>
+                  <h3 class="font-body text-xs font-semibold uppercase tracking-widest text-ink/40 dark:text-paper/40">Horarios</h3>
+                  <p class="mt-1 font-body text-base text-ink dark:text-paper whitespace-pre-line">{site.schedule}</p>
                 </div>
               )}
             </div>
           )}
 
-          <div class="mt-8">
-            <p class="font-body text-sm font-light text-paper/40">
-              Formulario de contacto y mapa próximamente.
-            </p>
-          </div>
-        </div>
-
-        <!-- Map placeholder -->
-        <div class="flex min-h-[300px] items-center justify-center rounded-sm bg-charcoal">
-          <p class="font-body text-sm text-paper/40">Mapa interactivo próximamente</p>
+          <!-- Map island -->
+          <Map
+            client:load
+            studioName={site?.studioName}
+            address={site?.address}
+          />
         </div>
       </div>
     </div>

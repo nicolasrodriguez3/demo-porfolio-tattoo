@@ -2,57 +2,48 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import ArtistCard from '../../components/ArtistCard.astro';
 import { getCollection } from 'astro:content';
 
 const artists = await getCollection('artists');
+const galleryItems = await getCollection('gallery');
+
+// Build a map of artist slug → portfolio image count
+const portfolioCounts = new Map<string, number>();
+for (const artist of artists) {
+  const count = galleryItems.filter(
+    (g) => g.data.artist === artist.data.slug && g.data.published !== false,
+  ).length;
+  portfolioCounts.set(artist.data.slug, count);
+}
 ---
 
 <BaseLayout
   title="Artistas — Carmin Tattoo Studio"
-  description="Conocé a nuestros artistas tatuadores en Paraná"
+  description="Conocé a nuestros artistas tatuadores en Paraná, Entre Ríos"
 >
   <Fragment slot="header">
     <Header />
   </Fragment>
 
-  <section class="bg-ink-black px-4 pb-24 pt-8">
+  <section class="bg-paper px-4 pb-24 pt-8 transition-colors dark:bg-ink-black">
     <div class="mx-auto max-w-6xl">
-      <h1 class="font-display text-4xl font-bold italic text-paper">Artistas</h1>
-      <p class="mt-2 font-body text-sm font-light text-paper/40">
+      <h1 class="font-display text-4xl font-bold italic text-ink transition-colors dark:text-paper">Nuestros Artistas</h1>
+      <p class="mt-2 font-body text-sm font-light text-ink/40 dark:text-paper/40">
         Conocé a nuestro equipo de tatuadores
       </p>
 
       {artists.length === 0 ? (
         <div class="mt-16 text-center">
-          <p class="font-body text-base text-paper/40">Conociendo a nuestros artistas...</p>
+          <p class="font-body text-base text-ink/40 dark:text-paper/40">Conociendo a nuestros artistas...</p>
         </div>
       ) : (
         <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {artists.map((artist) => (
-            <a
-              href={`/artistas/${artist.data.slug}`}
-              class="group block rounded-sm border border-warm-gray bg-charcoal p-6 transition-colors hover:border-copper/30 no-underline"
-            >
-              <div class="aspect-square overflow-hidden rounded-full bg-warm-gray">
-                <img
-                  src={artist.data.photo}
-                  alt={artist.data.name}
-                  class="h-full w-full object-cover transition-opacity group-hover:opacity-80"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-              <h2 class="mt-4 font-display text-2xl font-bold italic text-paper group-hover:text-copper transition-colors">
-                {artist.data.name}
-              </h2>
-              <div class="mt-2 flex flex-wrap gap-2">
-                {artist.data.styles.map((style) => (
-                  <span class="rounded-full border border-copper/30 px-3 py-0.5 font-body text-xs font-light text-copper">
-                    {style}
-                  </span>
-                ))}
-              </div>
-            </a>
+            <ArtistCard
+              artist={artist}
+              portfolioCount={portfolioCounts.get(artist.data.slug) ?? 0}
+            />
           ))}
         </div>
       )}

@@ -1,0 +1,167 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import SocialLinks from '../../components/SocialLinks.astro';
+import Lightbox from '../../components/Lightbox';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const artists = await getCollection('artists');
+  const galleryItems = await getCollection('gallery');
+
+  return artists.map((artist) => ({
+    params: { slug: artist.data.slug },
+    props: { artist, galleryItems },
+  }));
+}
+
+export interface Props {
+  artist: any;
+  galleryItems: any[];
+}
+
+const { artist, galleryItems } = Astro.props;
+const published = galleryItems.filter((g: any) => g.data.published !== false);
+const portfolioItems = published.filter(
+  (g: any) => g.data.artist === artist.data.slug,
+);
+
+// Serializable data for the Lightbox island
+const imagesForJS = portfolioItems.map((item: any) => ({
+  src: item.data.image,
+  title: item.data.title,
+  slug: item.data.slug,
+  description: item.data.description ?? '',
+  styles: item.data.styles,
+  artist: artist.data.name,
+}));
+
+const { name, photo, bio, styles, social } = artist.data;
+const hasPortfolio = portfolioItems.length > 0;
+---
+
+<BaseLayout
+  title={`${name} — Artistas — Carmin Tattoo Studio`}
+  description={`Conocé el portfolio de ${name}, tatuador${styles.length > 0 ? ' especialista en ' + styles.join(', ') : ''} en Carmin Tattoo Studio, Paraná`}
+>
+  <Fragment slot="header">
+    <Header />
+  </Fragment>
+
+  <section class="bg-paper px-4 pb-32 pt-8 transition-colors dark:bg-ink-black">
+    <div class="mx-auto max-w-6xl">
+      <!-- Back link -->
+      <a
+        href="/artistas"
+        class="group mb-8 inline-flex items-center gap-1 font-body text-sm font-light text-ink/40 no-underline transition-colors hover:text-copper dark:text-paper/40"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4 transition-transform group-hover:-translate-x-0.5">
+          <path fill-rule="evenodd" d="M17 10a.75.75 0 01-.75.75H5.612l4.158 3.96a.75.75 0 11-1.04 1.08l-5.5-5.25a.75.75 0 010-1.08l5.5-5.25a.75.75 0 111.04 1.08L5.612 9.25H16.25A.75.75 0 0117 10z" clip-rule="evenodd" />
+        </svg>
+        Todos los artistas
+      </a>
+
+      <!-- Artist header -->
+      <div class="grid gap-10 lg:grid-cols-[1fr_2fr]">
+        <!-- Photo + info sidebar -->
+        <div>
+          <div class="overflow-hidden rounded-sm">
+            <img
+              src={photo}
+              alt={name}
+              class="w-full object-cover"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+
+          <!-- Style tags -->
+          <div class="mt-6 flex flex-wrap gap-2">
+            {styles.map((style: string) => (
+              <span class="rounded-full border border-copper/30 px-3 py-1 font-body text-xs font-light text-copper">
+                {style}
+              </span>
+            ))}
+          </div>
+
+          <!-- Social links -->
+          {social && (
+            <div class="mt-6">
+              <h3 class="mb-2 font-body text-xs font-semibold uppercase tracking-widest text-ink/40 dark:text-paper/40">
+                Redes
+              </h3>
+              <SocialLinks
+                instagram={social.instagram}
+                variant="stacked"
+              />
+            </div>
+          )}
+        </div>
+
+        <!-- Bio + portfolio -->
+        <div>
+          <h1 class="font-display text-5xl font-bold italic text-ink transition-colors dark:text-paper sm:text-6xl">
+            {name}
+          </h1>
+
+          <!-- Bio (rich text from Keystatic — already HTML) -->
+          <div class="mt-6 font-body text-base font-light leading-relaxed text-ink/60 dark:text-paper/60">
+            {bio.split('\n').map((paragraph: string) => (
+              paragraph.trim() ? <p class="mb-4">{paragraph}</p> : null
+            ))}
+          </div>
+
+          <!-- Portfolio section -->
+          <div class="mt-12">
+            <h2 class="font-display text-2xl font-bold italic text-ink transition-colors dark:text-paper">
+              Trabajos
+            </h2>
+
+            {!hasPortfolio ? (
+              <p class="mt-4 font-body text-sm font-light text-ink/40 dark:text-paper/40">
+                Sin trabajos publicados aún.
+              </p>
+            ) : (
+              <>
+                <div class="artist-portfolio-grid mt-6 columns-1 gap-4 sm:columns-2 lg:columns-3">
+                  {portfolioItems.map((item: any, index: number) => (
+                    <div
+                      class="gallery-grid-item group relative mb-4 cursor-pointer overflow-hidden break-inside-avoid"
+                      data-gallery-index={index}
+                      data-gallery-slug={item.data.slug}
+                    >
+                      <img
+                        src={item.data.image}
+                        alt={item.data.title}
+                        class="block w-full transition-transform duration-500 group-hover:scale-105"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <div class="pointer-events-none absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/80 via-black/10 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                        <p class="font-display text-lg font-bold italic text-paper">
+                          {item.data.title}
+                        </p>
+                        {item.data.styles && (
+                          <p class="mt-1 font-body text-xs font-semibold uppercase tracking-widest text-copper">
+                            {item.data.styles.join(', ')}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <Lightbox client:load items={imagesForJS} containerClass="artist-portfolio-grid" />
+              </>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="footer">
+    <Footer />
+  </Fragment>
+</BaseLayout>

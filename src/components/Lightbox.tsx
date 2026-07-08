@@ -11,13 +11,14 @@ interface GalleryImage {
 
 interface LightboxProps {
   items: GalleryImage[];
+  containerClass?: string;
 }
 
 /**
  * Fullscreen lightbox island with keyboard navigation,
  * focus trapping, and View Transitions API fallback.
  */
-export default function Lightbox({ items }: LightboxProps) {
+export default function Lightbox({ items, containerClass = 'gallery-grid' }: LightboxProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const dialogRef = useRef<HTMLDivElement>(null);
@@ -63,7 +64,7 @@ export default function Lightbox({ items }: LightboxProps) {
   // ── Attach click handlers to gallery grid items ──────────
 
   useEffect(() => {
-    const grid = document.querySelector('.gallery-grid');
+    const grid = document.querySelector(`.${containerClass}`);
     if (!grid) return;
 
     const handleClick = (e: Event) => {

@@ -2,7 +2,13 @@
 import ThemeToggle from './ThemeToggle';
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 bg-paper/80 backdrop-blur-md border-b border-stone-200 transition-colors dark:bg-ink-black/80 dark:border-warm-gray">
+<header class="fixed top-0 left-0 right-0 z-50 border-b border-stone-200 dark:border-warm-gray bg-paper/80 dark:bg-ink-black/80 backdrop-blur-md transition-colors">
+  <!-- Demo notice -->
+  <div class="bg-ink px-4 py-2 text-center font-body text-xs font-light text-paper/70">
+    Sitio de demostración. 
+    <a href="https://www.nicorodriguez.com.ar" class="mx-1 font-semibold text-copper no-underline transition-colors hover:text-copper-light">Contactame</a>
+    para obtener un sitio web profesional como este.
+  </div>
   <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
     <!-- Logo -->
     <a href="/" class="font-display text-2xl font-bold italic tracking-wide text-copper no-underline transition-colors hover:text-copper-light">
@@ -74,8 +80,8 @@ import ThemeToggle from './ThemeToggle';
   </nav>
 </header>
 
-<!-- Spacer for fixed header -->
-<div class="h-16"></div>
+<!-- Spacer for fixed header (demo notice + nav) -->
+<div class="h-24"></div>
 
 <script>
   const toggle = document.querySelector('[data-mobile-menu-toggle]');

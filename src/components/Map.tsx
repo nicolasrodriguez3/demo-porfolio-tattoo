@@ -28,7 +28,7 @@ export default function Map({
       });
 
       const map = L.map(mapRef.current!, {
-        center: [-31.7348, -60.5337],
+        center: [-31.7332, -60.5293],
         zoom: 16,
         scrollWheelZoom: false,
       });
@@ -38,7 +38,7 @@ export default function Map({
         maxZoom: 19,
       }).addTo(map);
 
-      const marker = L.marker([-31.7348, -60.5337]).addTo(map);
+      const marker = L.marker([-31.7332, -60.5293]).addTo(map);
       marker.bindPopup(`<strong>${studioName}</strong><br/>${address}`);
 
       // Enable scroll zoom on interaction

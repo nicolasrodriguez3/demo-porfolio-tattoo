@@ -3,7 +3,7 @@ import { config, fields, collection, singleton } from '@keystatic/core';
 const storage = import.meta.env.KEYSTATIC_GITHUB_CLIENT_ID
   ? {
       kind: 'github' as const,
-      repo: { owner: import.meta.env.KEYSTATIC_REPO_OWNER || 'tu-org', name: import.meta.env.KEYSTATIC_REPO_NAME || 'demo-portfolio-tattoo' },
+      repo: { owner: import.meta.env.KEYSTATIC_REPO_OWNER || 'nicolasrodriguez3', name: import.meta.env.KEYSTATIC_REPO_NAME || 'demo-porfolio-tattoo' },
     }
   : {
       kind: 'local' as const,

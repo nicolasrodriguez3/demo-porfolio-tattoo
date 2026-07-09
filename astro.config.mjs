@@ -9,8 +9,9 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://tattoo-studio.vercel.app',
+  site: 'https://tattoo.nicorodriguez.com.ar',
   output: 'static',
+  server: { host: true },
 
   adapter: node({
     mode: 'standalone',

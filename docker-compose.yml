@@ -1,0 +1,23 @@
+services:
+  app:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "4321:4321"
+    environment:
+      - KEYSTATIC_GITHUB_CLIENT_ID=${KEYSTATIC_GITHUB_CLIENT_ID}
+      - KEYSTATIC_GITHUB_CLIENT_SECRET=${KEYSTATIC_GITHUB_CLIENT_SECRET}
+      - KEYSTATIC_REPO_OWNER=nicolasrodriguez3
+      - KEYSTATIC_REPO_NAME=demo-porfolio-tattoo
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.tattoo.rule=Host(`tattoo.nicorodriguez.com.ar`)"
+      - "traefik.http.routers.tattoo.tls=true"
+      - "traefik.http.routers.tattoo.tls.certresolver=letsencrypt"
+      - "traefik.http.services.tattoo.loadbalancer.server.port=4321"
+    networks:
+      - traefik
+
+networks:
+  traefik:
+    external: true

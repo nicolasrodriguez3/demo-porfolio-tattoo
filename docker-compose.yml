@@ -7,6 +7,7 @@ services:
     environment:
       - KEYSTATIC_GITHUB_CLIENT_ID=${KEYSTATIC_GITHUB_CLIENT_ID}
       - KEYSTATIC_GITHUB_CLIENT_SECRET=${KEYSTATIC_GITHUB_CLIENT_SECRET}
+      - KEYSTATIC_SECRET=${KEYSTATIC_SECRET}
       - KEYSTATIC_REPO_OWNER=nicolasrodriguez3
       - KEYSTATIC_REPO_NAME=demo-porfolio-tattoo
     labels:

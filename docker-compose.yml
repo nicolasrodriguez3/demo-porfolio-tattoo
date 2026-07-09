@@ -17,8 +17,8 @@ services:
       - "traefik.http.routers.tattoo.tls.certresolver=letsencrypt"
       - "traefik.http.services.tattoo.loadbalancer.server.port=4321"
     networks:
-      - traefik
+      - web
 
 networks:
-  traefik:
+  web:
     external: true

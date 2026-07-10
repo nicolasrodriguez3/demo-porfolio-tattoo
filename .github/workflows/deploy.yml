@@ -16,7 +16,7 @@ jobs:
           key: ${{ secrets.VPS_SSH_KEY }}
           port: 22022
           script: |
-            cd /srv/sites/demo-portfolio-tattoo
+            cd /srv/sites/demo-porfolio-tattoo
             git pull origin main
             docker compose build
             docker compose up -d

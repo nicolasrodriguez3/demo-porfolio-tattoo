@@ -1,8 +1,6 @@
 import { config, fields, collection, singleton } from '@keystatic/core';
 
-const isProduction = import.meta.env.MODE === 'production';
-
-const storage = isProduction
+const storage = process.env.KEYSTATIC_GITHUB_CLIENT_ID
   ? ({
       kind: 'github',
       repo: {

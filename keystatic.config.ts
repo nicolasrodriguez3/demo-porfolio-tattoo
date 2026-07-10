@@ -1,11 +1,11 @@
 import { config, fields, collection, singleton } from '@keystatic/core';
 
-const storage = process.env.KEYSTATIC_GITHUB_CLIENT_ID
+const storage = import.meta.env.KEYSTATIC_GITHUB_CLIENT_ID
   ? ({
       kind: 'github',
       repo: {
-        owner: process.env.KEYSTATIC_REPO_OWNER || import.meta.env.KEYSTATIC_REPO_OWNER || 'nicolasrodriguez3',
-        name: process.env.KEYSTATIC_REPO_NAME || import.meta.env.KEYSTATIC_REPO_NAME || 'demo-porfolio-tattoo',
+        owner: import.meta.env.KEYSTATIC_REPO_OWNER || 'nicolasrodriguez3',
+        name: import.meta.env.KEYSTATIC_REPO_NAME || 'demo-porfolio-tattoo',
       },
     } as const)
   : ({
@@ -13,7 +13,13 @@ const storage = process.env.KEYSTATIC_GITHUB_CLIENT_ID
     } as const);
 
 export default config({
-  storage,
+  storage: {
+      kind: 'github',
+      repo: {
+        owner: import.meta.env.KEYSTATIC_REPO_OWNER || 'nicolasrodriguez3',
+        name: import.meta.env.KEYSTATIC_REPO_NAME || 'demo-porfolio-tattoo',
+      },
+    },
   collections: {
     artists: collection({
       label: 'Artistas',

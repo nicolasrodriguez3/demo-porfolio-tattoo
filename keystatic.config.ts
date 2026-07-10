@@ -13,13 +13,7 @@ const storage = import.meta.env.KEYSTATIC_GITHUB_CLIENT_ID
     } as const);
 
 export default config({
-  storage: {
-      kind: 'github',
-      repo: {
-        owner: import.meta.env.KEYSTATIC_REPO_OWNER || 'nicolasrodriguez3',
-        name: import.meta.env.KEYSTATIC_REPO_NAME || 'demo-porfolio-tattoo',
-      },
-    },
+  storage,
   collections: {
     artists: collection({
       label: 'Artistas',

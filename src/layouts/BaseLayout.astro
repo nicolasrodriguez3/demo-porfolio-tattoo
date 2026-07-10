@@ -14,11 +14,11 @@ const {
   title = 'Tattoo Studio',
   description = 'Estudio de tatuaje profesional en Paraná, Entre Ríos. Especialistas en blackwork, tradicional, realismo, dotwork y más.',
   image = '/images/og-default.jpg',
-  url = 'https://tattoo-studio.vercel.app',
+  url = 'https://tattoo.nicorodriguez.com.ar',
   type = 'website',
 } = Astro.props;
 
-const siteUrl = 'https://tattoo-studio.vercel.app';
+const siteUrl = 'https://tattoo.nicorodriguez.com.ar';
 const fullUrl = url.startsWith('http') ? url : `${siteUrl}${url}`;
 const fullImage = image.startsWith('http') ? image : `${siteUrl}${image}`;
 ---
@@ -29,6 +29,8 @@ const fullImage = image.startsWith('http') ? image : `${siteUrl}${image}`;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <meta name="theme-color" content="#C67C4E" />
+    <meta name="color-scheme" content="dark light" />
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
@@ -44,6 +46,10 @@ const fullImage = image.startsWith('http') ? image : `${siteUrl}${image}`;
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={fullImage} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate icon" href="/favicon.ico" sizes="any" />
 
     <!-- Google Fonts: Cormorant Garamond + Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -97,8 +103,8 @@ const fullImage = image.startsWith('http') ? image : `${siteUrl}${image}`;
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
         "name": "Tattoo Studio",
-        "image": "https://tattoo-studio.vercel.app/images/og-default.jpg",
-        "url": "https://tattoo-studio.vercel.app",
+        "image": "https://tattoo.nicorodriguez.com.ar/images/og-default.jpg",
+        "url": "https://tattoo.nicorodriguez.com.ar",
         "telephone": "+54 343 123-4567",
         "email": "info@tattoostudio.com",
         "priceRange": "$$",
